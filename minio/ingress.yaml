@@ -1,0 +1,26 @@
+# Ingress configuration for MinIO service
+# Ensure that the NGINX Ingress Controller is installed in your cluster
+# Documentation: https://kubernetes.io/docs/concepts/services-networking/ingress/
+# Example install command:
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.4/deploy/static/provider/cloud/deploy.yaml
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: minio 
+            port:
+              number: 9000 
