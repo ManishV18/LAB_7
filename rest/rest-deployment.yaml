@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rest-container
-        image: gefb2000/demucs-rest:latest
+        image: vankudremanish/demucs-rest:latest
         resources:
           requests:
             cpu: 100m
