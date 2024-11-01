@@ -1,0 +1,35 @@
+# Create a new namespace for the MinIO application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minio-dev  
+  labels:
+    name: minio-dev  
+---
+# Deploy a MinIO pod within the specified Kubernetes namespace
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: minio
+  name: minio  
+  namespace: minio-dev  
+spec:
+  containers:
+    - name: minio 
+      image: quay.io/minio/minio:latest  
+      command: 
+        - /bin/bash  
+        - -c  
+      args: 
+        - minio server /data --console-address :9090  
+      volumeMounts:
+        - mountPath: /data 
+          name: local-storage 
+  nodeSelector:
+    kubernetes.io/hostname: kubealpha.local  
+  volumes:
+    - name: local-storage 
+      hostPath:
+        path: /mnt/disk1/data  
+        type: DirectoryOrCreate  
