@@ -13,8 +13,8 @@ spec:
         app: rest-service
     spec:
       containers:
-      - name: rest-container
-        image: vankudremanish/demucs-rest:latest
+      - name: rest-container        
+        image: vankudremanish/music-separation-service:latest
         resources:
           requests:
             cpu: 100m
