@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: worker-container 
-        image: gefb2000/demucs-worker:latest 
+        image: vankudremanish/demucs-worker:latest 
         resources:
           requests:
             cpu: 100m
